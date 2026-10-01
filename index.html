@@ -1,1 +1,299 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Physics Attendance</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: Arial, sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #7f0000,
+        #ff3b3b
+    );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 12px;
+}
+
+.container {
+    width: 100%;
+    max-width: 390px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cic-logo {
+    width: 120px;
+    height: 75px;
+
+    margin-bottom: 8px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+}
+
+.maple {
+    font-size: 42px;
+    line-height: 35px;
+
+    filter: grayscale(1) brightness(0) invert(1);
+}
+
+.cic-text {
+    color: white;
+
+    font-size: 30px;
+    font-weight: bold;
+
+    letter-spacing: 5px;
+    line-height: 30px;
+
+    text-shadow:
+        0 3px 8px rgba(0,0,0,0.35);
+}
+
+.card {
+    background: white;
+
+    width: 100%;
+    max-width: 365px;
+
+    padding: 22px 22px 18px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.30);
+}
+
+h1 {
+    color: #8b0000;
+
+    font-size: 25px;
+
+    margin: 0;
+}
+
+h2 {
+    color: #e53935;
+
+    font-size: 16px;
+
+    margin: 4px 0 7px;
+}
+
+.description {
+    color: #777;
+
+    font-size: 12px;
+
+    margin: 0 0 12px;
+}
+
+input {
+    width: 100%;
+
+    padding: 12px 13px;
+
+    margin: 5px 0;
+
+    border: 2px solid #eeeeee;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+input:focus {
+    border-color: #e53935;
+}
+
+button {
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 9px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #8b0000,
+        #e53935
+    );
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+}
+
+.quote {
+    margin: 15px auto 0;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #eeeeee;
+
+    color: #555;
+
+    font-size: 11px;
+
+    line-height: 1.45;
+
+    font-style: italic;
+
+    max-width: 300px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="cic-logo">
+
+        <div class="maple">🍁</div>
+
+        <div class="cic-text">CIC</div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h1>
+            Physics Attendance
+        </h1>
+
+        <h2>
+            Student Attendance
+        </h2>
+
+        <p class="description">
+            Enter your information to record your attendance
+        </p>
+
+
+        <form
+            id="attendanceForm"
+            method="GET"
+            target="_self"
+        >
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Student Name"
+                required
+            >
+
+
+            <input
+                type="email"
+                name="email"
+                placeholder="University Email"
+                required
+            >
+
+
+            <input
+                type="text"
+                name="studentId"
+                placeholder="Student ID"
+                required
+            >
+
+
+            <input
+                type="hidden"
+                name="session"
+                id="session"
+            >
+
+
+            <button type="submit">
+                Submit Attendance
+            </button>
+
+        </form>
+
+
+        <div class="quote">
+
+            "Behind every system, there's someone
+            who knows how to break it."
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const session =
+    params.get("session");
+
+
+document.getElementById(
+    "session"
+).value = session || "";
+
+
+/*
+   The form will be connected
+   to Google Apps Script
+   after we finish the backend.
+*/
+
+document.getElementById(
+    "attendanceForm"
+).action =
+"https://script.google.com/macros/s/AKfycbz0e9QZrp0T4nwbcdCLyxoFhAGDGKm590ag0980IaVNWR4rotTjOXIUFrtKxyvwIomF/exec";
+
+</script>
+
+</body>
+
+</html>
